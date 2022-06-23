@@ -1,0 +1,15 @@
+---
+layout: page
+title: Дневник
+---
+
+{% for post in site.posts reversed %}
+
+<article class="post-preview check-item" id="{{ post.date | date: '%d-%B-%Y' }}" data-date="{{ post.date }}">
+  <div>
+    <h3 class="post-title">{% include date.html date=post.date %}</h3>
+      {{ post.content }}
+  </div>
+</article>
+
+{% endfor %}

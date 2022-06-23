@@ -1,0 +1,332 @@
+---
+layout: page
+title: Скакуновщина
+description: д. Скакуновщина, Бешенковичский район, Витебская область.
+---
+
+<main class="main-data-block" width="100%">
+    <h2>деревня Скакуновщина.</h2>
+<!--
+    <h4>до 1924-го года: <i>д. Скакуновщина, Мартиновская волость, Лепельский уезд, Витебская губерния.</i></h4>
+    <h4>после 1924-го года: <i>д. Скакуновщина, Бешенковичский район, Витебская область.</i></h4>
+-->
+    <div id="map"></div>
+
+    <article>
+        <div>
+            <ul id="list-of-house"></ul>
+        </div>
+    </article>
+</main>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=79c7589a-24cc-4fcf-ba19-a727f8b85a81&lang=ru_RU" type="text/javascript"></script>
+<script>
+    const linkColor = `style='color: #0066cc;'`;
+    const hatyArr = [
+        [
+            [ 55.064832, 29.109589 ],
+            'наша хата',
+`Тут жили дед Коля и баба Аня. Эту хату тут, вроде как купили в 1950-х у какой-то женщины.`,
+            18
+        ],
+        [
+            [ 55.067003, 29.116670 ],
+            'Каркоза',
+`Хата Николая Владимировича Каркоза, троюродный брат моей бабушки Ани.`,
+            18
+        ],
+        [
+            [ 55.065288, 29.110417 ],
+            'баба Маша',
+`Тут была хата бабы Маши (Мария Иванова Шаппо), сестры моего деда Коли.`,
+            18
+        ],
+        [
+            [ 55.065660, 29.111742 ],
+            'Конопелько',
+`Тут хата Конопелько Леонида, родного брата моей бабушки Ани. Он жил в Калининграде. Сюда, помню приезжали его дочь с внуками из Ростова.`,
+            18
+        ],
+        [
+            [ 55.066203, 29.113367 ],
+            'Кощеевы',
+`Тут жил Кащеев Степан Кириллович. Как я узнал, он воевал и после войны работал учителем. Жена - Пискунова Нина Михайловна.`,
+            18
+        ],
+        [
+            [ 55.066187, 29.114029 ],
+            'Настуля',
+`Тут жила бабушка Настуля - родная тётка моей бабушки Ани. Родная сестра отца Ивана семеновича. Каркоза Настуля Семеновна, после замужества - Сорока. Муж погиб на финской.`,
+            18
+        ],
+        [
+            [ 55.062648, 29.167810 ],
+            'Кладбище Двор-Низголово',
+`Кладбище Двор-Низголово.<br>
+Тут похоронены дед Коля и его отец Иван.
+`,
+            14
+        ],
+        [
+            [ 55.018766, 29.143541 ],
+            'дед Володя в Бочейково',
+`Дом деда Володи в Бочейково, брата моего деда Коли.<br>
+Вроде как этот дом с участком просто купили. (местоположение вроде это, если я ничего не путаю)
+`,
+            14
+        ],
+        [
+            [ 55.099540, 29.120017 ],
+            'дер. Сокорово',
+`дер. Сокорово, Сокоровское сельское общество`,
+            13
+        ],
+        [
+            [ 55.082656, 29.078548 ],
+            'Глебовщина',
+`дер. Глебовщина, Сокоровское сельское общество.<br>Дед Коля рассказывал, что часто пешком ходил сюда к деду Исаку из Двора-Низголово.`,
+            13
+        ],
+        [
+            [ 55.085995, 29.101835 ],
+            'Козловщина',
+`дер.Козловщина, Сокоровское сельское общество`,
+            13
+        ],
+        [
+            [ 55.096826, 29.096245 ],
+            'дер.Заезвино',
+`дер. Заезвино, Сокоровское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.090822, 29.070453 ],
+            'фоль.Заезвино',
+`Фоль. Заезвино, Гайковское сельское общество`,
+            13
+        ],
+        [
+            [ 55.076748, 29.135333 ],
+            'дер.Низголово',
+`дер.Низголово, Низголовское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.055323, 29.089636 ],
+            'дер.Грабежево',
+`дер.Грабежево (Гребешова), Низголовское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.077712, 29.171426 ],
+            'дер.Заручевье',
+`дер.Заручевье, Низголовское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.096625, 29.154781 ],
+            'заст.Лазовица',
+`заст.Лазовица.`,
+            13
+        ],
+        [
+            [ 55.058029, 29.100152 ],
+            'хут.Воловица',
+`Хутор Воловица.<br>
+По переписи 1925-го, тут жил некий Каркоза Исак Никифорович с семьей.
+`,
+            13
+        ],
+        [
+            [ 55.060450, 29.045262 ],
+            'дер.Падалица',
+`дер.Падалица, Антопольское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.058479, 29.070324 ],
+            'дер.Городец',
+`дер.Городец, Антопольское сельское общество. Сейчас - урочище.`,
+            13
+        ],
+        [
+            [ 55.073418, 29.043867 ],
+            'дер.Батуколово',
+`дер.Батуколово, Сушанское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.084461, 29.043846 ],
+            'дер.Гайновщина',
+`дер.Гайновщина, Сушанское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.078345, 29.025541 ],
+            'дер.Горовыя',
+`дер.Горовыя, Сушанское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.043155, 29.031689 ],
+            'дер.Залесье',
+`дер.Залесье, Воропаевское сельское общество.`,
+            13
+        ],
+        [
+            [ 55.042846, 29.087009 ],
+            'дер.Ладеино',
+`дер.Ладеино (Ладеено), Воропаевское сельское общество.`,
+            13
+        ],
+    ];
+
+    const circleRadius = (zoom) => {
+        let radius = 0;
+        switch (zoom) {
+            case 19:
+                radius = 1;
+                break;
+            case 18:
+                radius = 2;
+                break;
+            case 17:
+                radius = 3;
+                break;
+            case 16:
+                radius = 7;
+                break;
+            case 15:
+                radius = 12;
+                break;
+            case 14:
+                radius = 20;
+                break;
+            case 13:
+                radius = 40;
+                break;
+            case 12:
+                radius = 70;
+                break;
+            case 11:
+                radius = 90;
+                break;
+            case 10:
+                radius = 100;
+                break;
+            default:
+                radius = 3;
+
+        }
+        return radius;
+    };
+
+
+
+    const listOfHouse = document.getElementById('list-of-house');
+    hatyArr.forEach(([,title], index) => {
+        const li = document.createElement('li');
+        li.classList.add('house-item');
+        li.innerHTML = `<a class="continue-reading" href="#${index}">${title}</a>`;
+        listOfHouse.appendChild(li);
+    });
+
+
+    const fillColor = '#ff000c';// Цвет заливки.
+    const strokeColor = '#fff';// Цвет обводки.
+    const opacity = 0.2;// Общая прозрачность (как для заливки, так и для обводки).
+    const strokeWidth = 1;// Ширина линии.
+    const strokeStyle = 'shortdash';// Стиль обводки.
+
+    const options = {
+        fillColor,
+        strokeColor,
+        opacity,
+        strokeWidth,
+        strokeStyle
+    };
+    const optionsHata = {
+        fillColor,
+        strokeColor,
+        strokeWidth
+    };
+    ymaps.ready(init);
+
+    function init() {
+        let obj = 0;
+        if (typeof window !== "undefined" && window.location) {
+            const {href, hash} = window.location;
+            obj = hash.slice(1) || 0;
+        }
+
+        const myMap = new ymaps.Map("map", {
+            zoom: hatyArr[obj][3] || 18,
+            center: hatyArr[obj][0],
+            type: 'yandex#hybrid'
+        });
+
+        myMap.events.add('boundschange', function(event) {
+            const newZoom = event.get('newZoom');
+            const radius = circleRadius(newZoom);
+            readyArr.forEach((circle) => circle.geometry.setRadius(radius));
+        });
+
+        const kladbische = new ymaps.GeoObject({
+            geometry: {
+                type: "Polygon",
+                coordinates: [
+                    [
+                        [55.070434, 29.122930],
+                        [55.070745, 29.124437],
+                        [55.069825, 29.124238],
+                        [55.069671, 29.123900],
+                        [55.070046, 29.123348],
+                    ],
+                ],
+                fillRule: "nonZero"
+            },
+            properties:{
+                balloonContent: "Кладбище",
+                hintContent: "Кладбище"
+            }
+        }, options);
+
+        const createHomeDot = (coord, title, discription, zoom) => new ymaps.Circle([
+            coord,
+            zoom ? circleRadius(zoom) : 2
+        ], {
+            balloonContent: discription,
+            open: true,
+            hintContent: title
+        }, optionsHata);
+
+
+
+
+        const readyArr = hatyArr.map((hata) => createHomeDot(...hata));
+        readyArr.forEach((hata, index) => {
+            hata.events.add('click', function () {
+                if (typeof window !== "undefined" && window.location) {
+                    // window.location.hash = `#${index}`;
+                }
+            });
+            myMap.geoObjects.add(hata);
+        });
+        myMap.geoObjects
+            .add(kladbische)
+        ;
+        readyArr[obj].balloon.open();
+
+        window.addEventListener('popstate', () => {
+            if (typeof window !== "undefined" && window.location) {
+                const {hash} = window.location;
+                obj = hash.slice(1) || 0;
+            }
+            const curr = hatyArr[obj];
+            myMap.setCenter(hatyArr[obj][0], curr[3] || 18);
+            readyArr[obj].balloon.open();
+        });
+
+    }
+
+</script>

@@ -1,0 +1,22 @@
+---
+layout: page
+title: Истории-воспоминания
+description: Длинные истории из моей жизни
+---
+
+<p>
+    В дненике, публикуются только текущие события в моей жизни, однако, я бы хотел развернуто написать о моей жизни до начала ведения дневника. Потому выделю эту часть отдельно. В дневнике так же могут быть какие-то короткие воспоминания. Тут - развернутые и объемные.
+</p>
+<ul class="table-of-contents">
+    <li><a class="continue-reading" href="#О-древе-предков">О древе предков</a></li>
+    <li><a class="continue-reading" href="#поступление-в-универ">Подготовка к поступлению в универ</a></li>
+    <li><a class="continue-reading" href="#Реконсткукция">Реконсткукция</a></li>
+    <li><a class="continue-reading" href="#Работа-на-заводе">Работа на заводе</a></li>
+    <li><a class="continue-reading" href="#Биткоин">Биткоин</a></li>
+    <li><a class="continue-reading" href="#август-2020">август 2020</a></li>
+    <li><a class="continue-reading" href="#Как-я-не-стал-военным">Как я не стал военным</a></li>
+</ul>
+
+{% for item in site.memories %}
+<p>{{ item.content | markdownify }}</p>
+{% endfor %}

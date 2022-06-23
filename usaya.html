@@ -1,0 +1,186 @@
+---
+layout: page
+title: Усая
+description: д. Усая, Ушачский район, Витебская область.
+---
+
+<main class="main-data-block" width="100%">
+    <h2>деревня Усая</h2>
+    <div id="map"></div>
+
+    <article>
+        <div>
+            <ul id="list-of-house"></ul>
+        </div>
+    </article>
+
+</main>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=79c7589a-24cc-4fcf-ba19-a727f8b85a81&lang=ru_RU" type="text/javascript"></script>
+<script>
+    const linkColor = `style='color: #0066cc;'`;
+    const hatyArr = [
+        [
+            [ 55.171744, 29.059943 ],
+            'село Усай',
+            'село Усай'
+        ],
+        [
+            [ 55.174514, 29.029897 ],
+            'деревня Ягодки',
+            'деревня Ягодки'
+        ],
+        [
+            [ 55.153290, 29.084995 ],
+            'деревня Любжино',
+            'деревня Любжино'
+        ],
+        [
+            [ 55.193385, 29.009077 ],
+            'поселок Кривущино',
+            'поселок Кривущино'
+        ],
+        [
+            [ 55.164691, 29.117234 ],
+            'деревня Павлюченки',
+            'деревня Павлюченки'
+        ],
+        [
+            [ 55.192188, 29.068847 ],
+            'деревня Татарщина',
+            'деревня Татарщина'
+        ],
+        [
+            [ 55.160391, 29.070904 ],
+            'деревня Дѣдуново',
+            'деревня Дѣдуново'
+        ],
+    ];
+
+    const circleRadius = (zoom) => {
+        let radius = 0;
+        switch (zoom) {
+            case 19:
+                radius = 1;
+                break;
+            case 18:
+                radius = 2;
+                break;
+            case 17:
+                radius = 3;
+                break;
+            case 16:
+                radius = 7;
+                break;
+            case 15:
+                radius = 12;
+                break;
+            case 14:
+                radius = 20;
+                break;
+            case 13:
+                radius = 40;
+                break;
+            case 12:
+                radius = 70;
+                break;
+            case 11:
+                radius = 90;
+                break;
+            case 10:
+                radius = 100;
+                break;
+            default:
+                radius = 3;
+
+        }
+        return radius;
+    };
+
+
+
+    const listOfHouse = document.getElementById('list-of-house');
+    hatyArr.forEach(([,title], index) => {
+        const li = document.createElement('li');
+        li.classList.add('house-item');
+        li.innerHTML = `<a class="continue-reading" href="#${index}">${title}</a>`;
+        listOfHouse.appendChild(li);
+    });
+
+
+    const fillColor = '#ff000c';// Цвет заливки.
+    const strokeColor = '#fff';// Цвет обводки.
+    const opacity = 0.2;// Общая прозрачность (как для заливки, так и для обводки).
+    const strokeWidth = 1;// Ширина линии.
+    const strokeStyle = 'shortdash';// Стиль обводки.
+
+    const options = {
+        fillColor,
+        strokeColor,
+        opacity,
+        strokeWidth,
+        strokeStyle
+    };
+    const optionsHata = {
+        fillColor,
+        strokeColor,
+        strokeWidth
+    };
+    ymaps.ready(init);
+
+    function init() {
+        let obj = 0;
+        if (typeof window !== "undefined" && window.location) {
+            const {href, hash} = window.location;
+            obj = hash.slice(1) || 0;
+        }
+
+        const myMap = new ymaps.Map("map", {
+            zoom: hatyArr[obj][3] || 13,
+            center: hatyArr[obj][0],
+            type: 'yandex#hybrid'
+        });
+
+        myMap.events.add('boundschange', function(event) {
+            const newZoom = event.get('newZoom');
+            const radius = circleRadius(newZoom);
+            readyArr.forEach((circle) => circle.geometry.setRadius(radius));
+        });
+
+        const createHomeDot = (coord, title, discription, zoom) => new ymaps.Circle([
+            coord,
+            circleRadius(zoom || 13)
+        ], {
+            balloonContent: discription,
+            open: true,
+            hintContent: title
+        }, optionsHata);
+
+
+
+
+        const readyArr = hatyArr.map((hata) => createHomeDot(...hata));
+        readyArr.forEach((hata, index) => {
+            hata.events.add('click', function () {
+                if (typeof window !== "undefined" && window.location) {
+                    // window.location.hash = `#${index}`;
+                }
+            });
+            myMap.geoObjects.add(hata);
+        });
+
+        readyArr[obj].balloon.open();
+
+        window.addEventListener('popstate', () => {
+            if (typeof window !== "undefined" && window.location) {
+                const {hash} = window.location;
+                obj = hash.slice(1) || 0;
+            }
+            const curr = hatyArr[obj];
+            myMap.setCenter(hatyArr[obj][0], curr[3] || 18);
+            readyArr[obj].balloon.open();
+        });
+
+    }
+
+</script>

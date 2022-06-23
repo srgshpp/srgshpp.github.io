@@ -1,0 +1,9 @@
+---
+layout: page
+title: Интервью
+---
+
+{% for item in site.interviews %}
+    <h3>{% include date.html date=item.date %}</h3>
+    <p>{{ item.content | markdownify }}</p>
+{% endfor %}

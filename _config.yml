@@ -1,0 +1,30 @@
+title:              Sergey Shappo's notes
+email:              srgshpp@gmail.com.com
+description:        Мои воспоминания, мои мысли, моя жизнь...
+author:             Сергей Шаппо
+baseurl:            ""
+url:                "http://localhost:4000"
+
+# Social Profiles
+twitter_username:   shappoff
+github_username:    shappoff
+facebook_username:  shappoff
+instagram_username: shappoff
+linkedin_username:  shappoff
+
+# Add your google-analytics ID here to activate google analytics
+google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+collections:
+  interviews:
+    people: true
+  memories:
+    people: true
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
