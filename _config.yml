@@ -20,6 +20,8 @@ collections:
     people: true
   memories:
     people: true
+  ahnentafel0:
+    people: true
 # Build settings
 markdown:           kramdown
 paginate:           5

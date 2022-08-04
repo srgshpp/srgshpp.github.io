@@ -1,0 +1,23 @@
+---
+layout: page
+title: Биографии
+description: Биографии
+---
+
+<p>
+    Биографии моих родственников.
+</p>
+<ul class="table-of-contents">
+    <li><a class="continue-reading" href="#Шаппо-Сергей-Григорьевич">Я</a></li>
+    <li><a class="continue-reading" href="#Шаппо-Григорий-Николаевич">Папа</a></li>
+    <li><a class="continue-reading" href="#Новикова-Светлана-Александровна">Мама</a></li>
+    <li><a class="continue-reading" href="#Василевская-Наталья-Ивановна">Жена</a></li>
+    <li><a class="continue-reading" href="#Шаппо-Николай-Иванович">Дед Коля</a></li>
+    <li><a class="continue-reading" href="#Новиков-Александр-Михайлович">Дед Шура</a></li>
+    <li><a class="continue-reading" href="#Конопелько-Анна-Ивановна">Бабушка Аня</a></li>
+    <li><a class="continue-reading" href="#Машкович-Любовь-Федоровна">Бабушка Люба</a></li>
+</ul>
+
+{% for item in site.ahnentafel0 %}
+<article>{{ item.content | markdownify }}</article>
+{% endfor %}
