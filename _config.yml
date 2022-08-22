@@ -20,7 +20,7 @@ collections:
     people: true
   memories:
     people: true
-  ahnentafel0:
+  ahnentafel:
     people: true
 # Build settings
 markdown:           kramdown
