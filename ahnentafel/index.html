@@ -21,5 +21,9 @@ description: Биографии
 {% for item in site.ahnentafel %}
 {% assign splitpath = item.path | split: '/' %}
 {% assign splitfilename = splitpath[1] | split: '-' %}
-<article data-date="{{ splitfilename[0] }}">{{ item.content | markdownify }}</article>
+{% assign generation = splitfilename[0] %}
+<article data-date="{{ generation }}">
+    <h4>Поколение: {{generation}}</h4>
+    {{ item.content | markdownify }}
+</article>
 {% endfor %}
