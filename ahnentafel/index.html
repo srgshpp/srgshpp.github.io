@@ -20,6 +20,5 @@ description: Биографии
 
 {% for item in site.ahnentafel %}
 {% assign spliturl = post.path | split: '/' %}
-{% assign postname = spliturl[1] | split: '-' %}
-<article data-date="{{ postname[0] }}">{{ item.content | markdownify }}</article>
+<article data-date="{{ spliturl[1] }}">{{ item.content | markdownify }}</article>
 {% endfor %}
